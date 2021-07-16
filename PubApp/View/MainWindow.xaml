@@ -36,7 +36,7 @@
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
                 
-                <Image x:Name="Mimage"  >
+                <Image x:Name="Mimage" Source="{Binding Pub.ImagePath}" >
                     
                 </Image>
             </Grid>

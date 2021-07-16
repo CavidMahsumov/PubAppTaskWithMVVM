@@ -18,25 +18,28 @@ namespace PubApp.Repository
                      Name="NZS",
                       Price=1,
                        Volume=0.4,
-                       ImagePath="TheHarvest.jpg"
+                       ImagePath="../Images/nzs.jpg"
                 },
                 new Pub
                 {
                      Name="Blance",
                       Price=6.50,
-                       Volume=0.5
+                       Volume=0.5,
+                       ImagePath="../Images/bla.png"
                 },
                 new Pub
                 {
                      Name="Erdinger",
                       Price=7.0,
-                       Volume=0.5
+                       Volume=0.5,
+                       ImagePath="../Images/er.png"
                 },
                 new Pub
                 {
                      Name="Salyan",
                       Price=1,
-                       Volume=0.4
+                       Volume=0.4,
+                       ImagePath="../Images/Salyan.jpg"
                 },
             };
         }
