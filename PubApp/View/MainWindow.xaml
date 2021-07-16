@@ -3,7 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PubApp"
+        xmlns:local="clr-namespace:PubApp" 
+        xmlns:ie1="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="700">
     <Grid Background="{StaticResource SpecialGradient}">
@@ -14,14 +15,18 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="2"  Background="{StaticResource SpecialGradient}">
             <WrapPanel >
-                <Button Margin="60,20,60,0" Style="{StaticResource OrangeButton}" x:Name="BuyBtn" Content="Buy"  Width="100" Height="60"></Button>
-                <Button Margin="60,20,60,0" Style="{StaticResource OrangeButton}" x:Name="ResetBtn" Content="Reset"  Width="100" Height="60"></Button>
-                <Button Margin="60,20,0,0" Style="{StaticResource OrangeButton}" x:Name="ShowHistoryBtn" Content="Show History"  Width="100" Height="60"></Button>
+                <Button Command="{Binding BuyCommand}" Margin="60,20,60,0" Style="{StaticResource OrangeButton}" x:Name="BuyBtn" Content="Buy"  Width="100" Height="60"></Button>
+                <Button Command="{Binding ResetCommand}" Margin="60,20,60,0" Style="{StaticResource OrangeButton}" x:Name="ResetBtn" Content="Reset"  Width="100" Height="60"></Button>
+                <Button Command="{Binding ShowHistoryCommand}" Margin="60,20,0,0" Style="{StaticResource OrangeButton}" x:Name="ShowHistoryBtn" Content="Show History"  Width="100" Height="60"></Button>
             </WrapPanel>
         </Grid>
         <Grid Grid.Row="0">
-            <ComboBox x:Name="ComboBox" ItemsSource="{Binding Pubs}" DisplayMemberPath="Name" >
-                
+            <ComboBox  FontSize="20" x:Name="ComboBox" ItemsSource="{Binding Pubs}" DisplayMemberPath="Name" >
+                <ie1:Interaction.Triggers>
+                    <ie1:EventTrigger EventName="SelectionChanged">
+                        <ie1:InvokeCommandAction Command="{Binding SelectedItemChangedCommand}" CommandParameter="{Binding ElementName=ComboBox, Path=SelectedItem}" />
+                    </ie1:EventTrigger>
+                </ie1:Interaction.Triggers>
             </ComboBox>
         </Grid>
         <Grid Grid.Row="1" Background="{StaticResource SpecialGradient}">
@@ -31,7 +36,7 @@
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
                 
-                <Image >
+                <Image x:Name="Mimage"  >
                     
                 </Image>
             </Grid>
@@ -43,13 +48,13 @@
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="1">
                     <WrapPanel>
-                    <Button Content="+" FontSize="35" Margin="10" Width="100" Height="50" Style="{StaticResource CircleButton}" >
+                        <Button Command="{Binding plusButtonClick}" Content="+" FontSize="35" Margin="10" Width="100" Height="45" Style="{StaticResource CircleButton}" >
                         
                     </Button>
-                        <Label Width="100" FontSize="20" FontFamily="Comic Sans MS" >
+                        <Label Name="Countlbl" HorizontalAlignment="Center" Content="{Binding Count}" Width="100" FontSize="20" FontFamily="Comic Sans MS" >
                             
                         </Label>
-                        <Button  Content="-" FontSize="35" Margin="10" Width="100" Height="50"  Style="{StaticResource CircleButton}" >
+                        <Button Command="{Binding minusButtonClick}"  Content="-" FontSize="35" Margin="10" Width="100" Height="45"  Style="{StaticResource CircleButton}" >
 
                         </Button>
 
@@ -68,9 +73,9 @@
                 <Grid Grid.Column="1">
                     <StackPanel>
                         
-                    <TextBlock x:Name="NameTextBlock" Margin="40,20,0,0"  FontSize="20" FontFamily="Comic Sans MS"></TextBlock>
-                    <TextBlock x:Name="PriceTextBLock" Margin="40,20,0,0"   FontSize="20" FontFamily="Comic Sans MS"></TextBlock>
-                    <TextBlock x:Name="VolumeTextBlock"  Margin="40,20,0,0"  FontSize="20" FontFamily="Comic Sans MS"></TextBlock>
+                    <TextBlock x:Name="NameTextBlock" Text="{Binding Pub.Name}" Margin="40,20,0,0"  FontSize="20" FontFamily="Comic Sans MS"></TextBlock>
+                    <TextBlock x:Name="PriceTextBLock" Text="{Binding Pub.Price}" Margin="40,20,0,0"   FontSize="20" FontFamily="Comic Sans MS"></TextBlock>
+                    <TextBlock x:Name="VolumeTextBlock" Text="{Binding Pub.Volume}"  Margin="40,20,0,0"  FontSize="20" FontFamily="Comic Sans MS"></TextBlock>
                     </StackPanel>
                 </Grid>
                 </Grid>

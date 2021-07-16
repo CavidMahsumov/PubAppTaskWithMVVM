@@ -17,7 +17,8 @@ namespace PubApp.Repository
                 {
                      Name="NZS",
                       Price=1,
-                       Volume=0.4
+                       Volume=0.4,
+                       ImagePath="TheHarvest.jpg"
                 },
                 new Pub
                 {
